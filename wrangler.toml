@@ -1,6 +1,6 @@
 name = "joolean"
 type = "javascript"
-account_id = ""
+account_id = "ea93fcc0e10ae7a44b4bcd09add63922"
 workers_dev = true
 route = ""
 zone_id = ""
