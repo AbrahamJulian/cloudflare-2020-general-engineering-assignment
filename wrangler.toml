@@ -1,6 +1,7 @@
 name = "joolean"
-type = "javascript"
+type = "webpack"
 account_id = "ea93fcc0e10ae7a44b4bcd09add63922"
 workers_dev = true
 route = ""
 zone_id = ""
+webpack_config = "webpack.config.js"

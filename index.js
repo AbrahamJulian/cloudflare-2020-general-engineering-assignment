@@ -1,37 +1,16 @@
-const staticHost = "https://static-links-page.signalnerve.workers.dev"
-const init ={
-  headers : {
-    "content-type": "text/html;charset=UTF-8",
-  }
-}
+const Router = require('./router')
+const index = require('./routes/index')
 
 addEventListener('fetch', event => {
-  
   event.respondWith(handleRequest(event.request))
 })
 
-async function gatherResponse(response) {
-  const { headers } = response
-  const contentType = headers.get("content-type") || ""
-  if (contentType.includes("application/json")) {
-    return JSON.stringify(await response.json())
+function handleRequest(request) {
+  try {
+    const r = new Router()
+    r.get('/', index)
+    return r.route(request)
+  } catch (err) {
+    return new Response(err)
   }
-  else if (contentType.includes("application/text")) {
-    return await response.text()
-  }
-  else if (contentType.includes("text/html")) {
-    return await response.text()
-  }
-  else {
-    return await response.text()
-  }
-}
-
-
-async function handleRequest(request) {
-  
-  
-  const response = await fetch(staticHost, init)
-  const results = await gatherResponse(response)
-  return new Response(results, init);
 }
